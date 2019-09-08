@@ -1,0 +1,34 @@
+.li{
+    float: none;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .pull-right{
+    display: inline-block;
+}
+
+ul {
+    list-style-type: none;
+  }
+
+  a{
+      padding-top: 10px;
+  }
+  .search{
+    height: 24px;
+    width: 130px;
+    border-radius: 3px;
+}
+select{
+  height: 24px;
+  border-radius: 3px;
+}
+#filterBar{
+  margin-top: 13px;
+}
+
+.btn{
+  padding-top: 1px;
+  padding-bottom: 1px;
+}

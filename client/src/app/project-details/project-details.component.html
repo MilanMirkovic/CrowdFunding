@@ -1,0 +1,133 @@
+<div *ngIf="project" class="container">
+
+  <div class="row">
+    <div class="col-md-8">
+      <h1>{{project.name}}</h1>
+      <span>Project By: {{project.user.username}}</span>
+      <div>
+        <iframe width="560" height="315" [src]="project.videoUrl | safe" frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <br>
+      <p>{{project.description}}</p>
+    </div>
+    <div *ngIf="project.donations" class="col-md-4 donation" id="donation">
+      <h3 class="target"> Target: <span> {{project.moneyTarget}} $</span></h3>
+      <br>
+      <br>
+      <h4> Money Raised: {{donationSum}} $</h4>
+      <p>Number Of Donations: {{numberOfDonations}}</p>
+      <br>
+      <br>
+      <span *ngIf="!isLoggedIn()"><a [routerLink]="['/login']">Login</a>/<a [routerLink]="['/register']">Register</a> to Donate.</span>
+      <div *ngIf="isLoggedIn()">
+        <span> <input type="number" name="novaDonacija" [(ngModel)]="newDonation.donation"></span>
+        <button (click)="saveDonation()" class="btn btn-primary">Donate</button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <br>
+  <br>
+  <br>
+  <div class="container">
+
+    <nav class="navbar navbar-default">
+      <ul class="nav navbar-nav">
+        <li><a type="button" (click)="toggleVisibility('Menu1');" role="button">FAQ</a></li>
+        <li><a type="button" (click)="toggleVisibility('Menu2');" role="button">UPDATES</a></li>
+        <li><a type="button" (click)="toggleVisibility('Menu3');" role="button">ABOUT PROJECT</a></li>
+        <li><a type="button" (click)="toggleVisibility('Menu4');" role="button">COMMENTS</a></li>
+      </ul>
+    </nav>
+
+    <div id="Menu1" style="display: none;">
+      <ul *ngFor="let f of project.faqs;">
+        <li>
+          <div id="faq">
+            <h5>Question: {{f.question}}</h5>
+            <p>Answer: {{f.answer}}</p>
+          </div>
+          <button *ngIf="checkUser()" (click)="deleteFaq(f)" class="btn btn-danger"> Delete</button> 
+        </li>
+        
+        
+      </ul>
+      <button *ngIf="checkUser()" class="btn btn-primary" (click)="addFaqToggle()">Add new Faq</button>
+
+      <form *ngIf="checkUser() && faqToggle" class="form-horizontal" (ngSubmit)="addFaq()">
+          <div class="form-group">
+            <label class="control-label col-sm-1" for="input-question">Question: </label>
+            <div class="col-sm-11">
+              <input class="form-control" name="name-project" id="input-title" style="width:500px" [(ngModel)]="newFaq.question" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-1" for="input-author">Answer: </label>
+            <input class="form-control" name="answer" id="input-answer" style="width:500px" [(ngModel)]="newFaq.answer"/>
+          </div> 
+          
+          <div class="form-group save">
+              <input class="btn btn-success" type="submit" value="save"/>
+         </div>
+      </form>
+  
+  </div>
+
+  <div id="Menu2" style="display: none; ">
+      <ul *ngFor="let u of project.updates">
+        <li>
+          <div class="update" >
+            <h5 class="description">{{u.updateDescription}}</h5>
+            <p class="description">{{u.date | date}}</p>
+           </div>
+      </li>
+      </ul>
+      <form *ngIf="checkUser()" class="form-horizontal" (ngSubmit)="addUpdate()">
+
+          <div class="form-group">
+            <label class="control-label col-sm-1" for="input-update">Add Update: </label>
+            <input class="form-control" name="update" id="input-update" style="width:500px" [(ngModel)]="newUpdate.updateDescription"/>
+          </div> 
+          
+          <div class="form-group save">
+              <input class="btn btn-success" type="submit" value="save"/>
+         </div>
+      </form>
+  </div>
+
+
+  <div id="Menu3">
+    <p>{{project.aboutProject}}</p>
+  </div>
+
+
+  <div *ngIf="project.comments" id="Menu4">
+    <ul *ngFor="let p of project.comments">
+      <li>
+        <div class="comment">
+          <p>{{p.commentar}}</p>
+          <p>By: {{p.user.username}}</p>
+        </div>
+        <button *ngIf="checkUser()" (click)="deleteComment(p)" class="btn btn-danger"> Delete</button> 
+      </li>
+    </ul>
+    <span *ngIf="!isLoggedIn()"><a [routerLink]="['/login']">Login</a>/<a [routerLink]="['/register']">Register</a> to Comment.</span>
+    <form *ngIf="isLoggedIn()" (ngSubmit)="addComment()">
+      <div id="comment-div">
+        <label for="">Comment this project: </label>
+        <textarea class="comment-box" name="input-project" id="input-commentar" [(ngModel)]="newCommentar.commentar" ></textarea>
+        <input class="btn btn-success" type="submit" value="Dodaj" />
+
+      </div>
+    </form>
+  </div>
+
+
+</div>
+
+
+</div>

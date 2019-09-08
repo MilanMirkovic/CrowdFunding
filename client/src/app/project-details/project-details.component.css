@@ -1,0 +1,72 @@
+#donation{
+    border-style: solid;
+  border-color: green;
+  text-align: center;
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px; 
+  width: 280px;
+  margin-top: 75px;
+  margin-left: 30px;
+}
+
+input{
+    width: 100px;
+}
+.btn{
+    border-radius: 10px;
+}
+
+.navbar{
+    background: white;
+    border: 0px;
+    
+}
+
+ul {
+    list-style-type: none;
+  }
+#faq{
+ 
+    border-radius: 10px;
+    border: 1px solid gray;
+    width: 60%;
+}
+
+p:nth-child(even) {
+    background:rgb(189, 187, 187);
+    margin: 0px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  #Menu3{
+    display: none;
+  }
+
+.comment{
+    font-style: italic;
+    width: 60%;
+    border-radius: 10px;
+    border: 1px solid gray;
+    
+}
+
+#comment-div{
+  padding-left: 40px;
+  width: 62%;
+}
+
+.comment-box{
+  width: 100%;
+}
+
+.update{
+  width: 60%;
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+.descritpion{
+  padding-left: 5px;
+  
+}
